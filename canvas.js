@@ -4,6 +4,9 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 var c = canvas.getContext('2d');
+var colours = ["paleturquoise", "deepskyblue", "lightblue", "darkturquoise", "lavender", "mustardyellow"];
+// ["paleturquoise", "white", "red", "moccasin"];
+var background = "rgba(32,32,32,1)";
 
 function randint(min, max) {
 	return Math.floor(Math.random() * Math.floor(max - min)) + min;
@@ -58,7 +61,7 @@ function Circle(x, y, radius) {
 	this.minRadius = radius;
 	this.dx = (Math.random() - 0.5) * 0.5;
 	this.dy = (Math.random() - 0.5) * 0.5;
-	this.colour = choice(["paleturquoise", "gray", "red", "black"]);
+	this.colour = choice(colours);
 
 	this.draw = function() {
 		c.beginPath();
@@ -106,6 +109,8 @@ for (var i = 0; i <= 800; i++) {
 function animate() {
 	requestAnimationFrame(animate);
 	c.clearRect(0, 0, innerWidth, innerHeight);
+	c.fillStyle = background;
+	c.fillRect(0, 0, innerWidth, innerHeight);
 
 	for (var i = 0; i < circles.length; i++) {
 		circles[i].draw();
